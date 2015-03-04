@@ -1,6 +1,16 @@
-==============
 Read me
 ==============
+This is an open-source boilerplate made by Frontjet team, for developing Bootstrap3 based mobile-first HTML5 & CSS3 websites.
+The package is including:
+- Grunt - *JavaScript Task Runner (http://gruntjs.com)*
+- EJS - *HTML Template library (http://www.embeddedjs.com)*
+- SASS - *CSS Preprocessor (http://sass-lang.com)*
+- Bourbon - *Sass Mixin Library (http://bourbon.io)*
+- Bootstrap v3.3.2 - *Mobile-first CSS framework (http://getbootstrap.com)*
+- Font Awesome 4.3 - *Font icon library (http://fontawesome.io)*
+
+http://frontjet.com
+
 
 Installation
 --------------
@@ -18,8 +28,13 @@ After grunt instalation change to your project dir where package.json is located
 
     npm install
 
-This will install grunt, which is used for SASS compilation into CSS. Run your grunt while development for auto-compilation on any .scss file change in /sass directory
+This will install grunt and node modules, which are used for SASS compilation into CSS, eJS compilation into HTML. 
+To run autocompilation while development you would do this:
 
 	grunt watch
+
+To build once for production you may use
+
+	grunt build
 
 Enjoy! :)
