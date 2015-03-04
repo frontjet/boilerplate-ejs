@@ -28,7 +28,7 @@ After grunt instalation change to your project dir where package.json is located
 
     npm install
 
-This will install grunt and node modules, which are used for SASS compilation into CSS, eJS compilation into HTML. 
+This will install grunt and node modules, which are used for SASS compilation into CSS, EJS compilation into HTML. 
 To run autocompilation while development you would do this:
 
 	grunt watch
