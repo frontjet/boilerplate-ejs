@@ -1,0 +1,97 @@
+@charset "UTF-8";
+
+
+
+@import "bourbon";
+
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,200italic,300italic,400italic,600italic,700italic);
+
+
+/* helpers */
+
+@import "helpers/icons";
+@import "helpers/reset";
+@import "helpers/colors";
+
+
+
+
+$xs: "(max-width: 767px)";
+$sm: "(min-width: 768px) and (max-width: 991px)";
+$md: "(min-width: 992px) and  (max-width: 1199px)";
+$lg: "(min-width: 1200px)";
+
+
+html{
+	
+}
+
+
+@mixin br($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+///////////
+
+body {
+	font-family: 'Source Sans Pro', sans-serif;
+	
+	.form-control {
+		-webkit-appearance: none ;
+	   -moz-appearance:    none ;
+	   appearance:         none ;
+	}
+}
+
+
+h1,h2,h3,h4,h5 {
+	
+}
+
+h1 {
+	
+}
+
+a {
+	outline: 0 !important;
+}
+p {
+	cursor: default;
+}
+
+
+
+
+@media #{$xs} {
+}
+@media #{$sm} {
+}
+@media #{$md} {
+}
+@media #{$lg} {
+}
+
+
+/* layouts */
+
+
+
+/* partials */
+
+@import "partials/header";
+@import "partials/footer";
+
+////////////////////////////////////////////////////////////////* RETINA MEDIA*/ 
+
+@media
+
+only screen and (-webkit-min-device-pixel-ratio: 2)      and (max-width: 767px),
+only screen and (   min--moz-device-pixel-ratio: 2)      and (max-width: 767px),
+only screen and (     -o-min-device-pixel-ratio: 2/1)    and (max-width: 767px),
+only screen and (        min-device-pixel-ratio: 2)      and (max-width: 767px),
+only screen and (                min-resolution: 192dpi) and (max-width: 767px),
+only screen and (                min-resolution: 2dppx)  and (max-width: 767px) { 
+
+}
