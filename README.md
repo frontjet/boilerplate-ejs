@@ -1,3 +1,4 @@
+==============
 Read me
 ==============
 
@@ -17,9 +18,8 @@ After grunt instalation change to your project dir where package.json is located
 
     npm install
 
-This will install grunt, which is used for LESS compilation into CSS. Run your grunt while development for auto-compilation on any .less file change in /less directory
+This will install grunt, which is used for SASS compilation into CSS. Run your grunt while development for auto-compilation on any .scss file change in /sass directory
 
 	grunt watch
 
-You can also run grunt watch in windows by grunt-watch.bat file.
-That's it.
+Enjoy! :)
