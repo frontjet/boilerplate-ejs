@@ -8,6 +8,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-spritesmith');
     grunt.loadNpmTasks('grunt-csso');
     grunt.loadNpmTasks('grunt-ejs');
 
@@ -21,7 +22,7 @@ module.exports = function(grunt) {
         copy: {
             assets: {
                 files: [{
-                    src: ['**'],
+                    src: ['**', '!sprite-icons'],
                     dest: '<%= buildDir %>/img/',
                     cwd: '<%= srcDir %>/img/',
                     expand: true
@@ -48,7 +49,16 @@ module.exports = function(grunt) {
                 ext: '.html',
             },
         },
-
+        sprite: {
+            all: {
+                src: '<%= srcDir %>/img/sprite-icons/*.png',
+                dest: '<%= srcDir %>/img/spritebase.png',
+                destCss: '<%= srcDir %>/sass/helpers/_icons.scss',
+                imgPath: '../img/spritebase.png',
+                algorithm: 'top-down',
+                cssTemplate: '<%= srcDir %>/sass/helpers/mustacheStr.css.mustache'
+            }
+        },
         sass: {
             compile: {
                 options: {
@@ -79,26 +89,6 @@ module.exports = function(grunt) {
                     '<%= buildDir %>/css/main.css': ['<%= buildDir %>/css/main.css']
                 }
             }
-            // restructure: {
-            //     options: {
-            //         restructure: false,
-            //         report: 'min'
-            //     },
-            //     files: {
-            //         'restructure.css': ['input.css']
-            //     }
-            // },
-            // banner: {
-            //     options: {
-            //         banner: '/* Copyleft */'
-            //     },
-            //     files: {
-            //         'banner.css': ['input.css']
-            //     }
-            // },
-            // shortcut: {
-            //     src: 'override.css'
-            // }
         },
         delta: {
 
@@ -116,7 +106,17 @@ module.exports = function(grunt) {
                     livereload: true
                 },
             },
-
+            sprite: {
+                files: [
+                    '<%= srcDir %>/sass/helpers/_icons.scss',
+                    '<%= srcDir %>/img/sprite-icons/*.png',
+                    '<%= srcDir %>/img/spritebase.png'
+                ],
+                tasks: ['sprite:all'],
+                options: {
+                    livereload: true
+                },
+            },
             /**
              * When .ejs file changes, we need to compile ejs into HTML.
              */
@@ -157,6 +157,7 @@ module.exports = function(grunt) {
         'sass:compile',
         'ejs:all',
         'copy:assets',
+        "sprite:all",
         'delta'
     ]);
 
@@ -165,6 +166,7 @@ module.exports = function(grunt) {
         'sass:fontawesome',
         'sass:compile',
         'ejs:all',
+        "sprite:all",
         'copy:assets'
     ]);
 

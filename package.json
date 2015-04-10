@@ -8,6 +8,7 @@
     "grunt-contrib-watch": "~0.5.3",
     "grunt-csso": "^0.7.0",
     "grunt-ejs": "~0.1.0",
+    "grunt-spritesmith": "~3.1.1",
     "node-bourbon": "^1.2.3"
   }
 }
