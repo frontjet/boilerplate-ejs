@@ -36,6 +36,12 @@ module.exports = function(grunt) {
                     dest: '<%= buildDir %>/js/',
                     cwd: '<%= srcDir %>/js/',
                     expand: true
+                },{
+                    src: ['**/*.php'],
+                    dest: '<%= buildDir %>/',
+                    expand: true,
+                    cwd: '<%= srcDir %>/',
+                    ext: '.php'
                 }]
             }
         },
