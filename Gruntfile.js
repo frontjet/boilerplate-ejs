@@ -9,6 +9,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-spritesmith');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-csso');
     grunt.loadNpmTasks('grunt-ejs');
 
@@ -32,7 +33,7 @@ module.exports = function(grunt) {
                     cwd: '<%= srcDir %>/fonts/',
                     expand: true
                 }, {
-                    src: ['**'],
+                    src: ['vendor/**/*', '!vendor/*.js'],
                     dest: '<%= buildDir %>/js/',
                     cwd: '<%= srcDir %>/js/',
                     expand: true
@@ -96,6 +97,19 @@ module.exports = function(grunt) {
                 }
             }
         },
+        uglify: {
+          dist: {
+            files: {
+              '<%= buildDir %>/js/scripts.min.js': [
+                '<%= srcDir %>/js/*.js'
+              ]
+            },
+            options: {
+               beautify: true,
+               mangle: false
+            }
+          }
+        },
         delta: {
 
             options: {
@@ -148,8 +162,15 @@ module.exports = function(grunt) {
                 options: {
                     livereload: true
                 },
-            }
+            },
 
+            uglify: {
+              files: ['<%= srcDir %>/js**/*'],
+              tasks: ['uglify'],
+              options: {
+                  livereload: true
+              },
+            },
         }
     }
 
@@ -164,6 +185,7 @@ module.exports = function(grunt) {
         'ejs:all',
         'copy:assets',
         "sprite:all",
+        "uglify",
         'delta'
     ]);
 
@@ -173,6 +195,7 @@ module.exports = function(grunt) {
         'sass:compile',
         'ejs:all',
         "sprite:all",
+        "uglify",
         'copy:assets'
     ]);
 
