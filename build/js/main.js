@@ -1,8 +1,0 @@
-$(function(){
-
-
-	// console.log('hello');
-
-
-
-});
