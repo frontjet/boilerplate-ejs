@@ -1,11 +1,20 @@
-<?php 
-	$parent_dir = basename(dirname(__DIR__));
+<?php
+if ($handle = opendir('.')) {
+    while (false !== ($entry = readdir($handle))) {
+        if ($entry != "." && $entry != ".." && $entry != "blank.html" && strpos($entry, "html")) {
+            $entries[]="$entry\n";
+        }
+    }
+    closedir($handle);
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title><?php echo $parent_dir ;?></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<title></title>
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<style>
 		html,body{height: 100%;}
@@ -22,28 +31,9 @@
 	</style>
 </head>
 <body>
-	<?php
 
-	$rootDir = opendir(__DIR__.DIRECTORY_SEPARATOR);
-	$dirArray = [];
 
-	while($element = readdir($rootDir)) {
-		if ((substr($element, 0, 1) != ".") && strrpos($element, '.htm')) {
-			$dirArray[] = $element;
-		}
-	}
 
-	closedir($rootDir);
-
-	$projectCount = count($dirArray) ;
-
-	if ($projectCount > 0) { sort($dirArray); }
-
-	if (($key = array_search('blank.html', $dirArray)) !== false) {
-		unset($dirArray[$key]);
-	}
-
-	?>
 
 	<div class="wrapAll">
 		<header class="index-header">
@@ -55,13 +45,14 @@
 		</header>
 		<div class="container">
 			<div class="index-container">
-				<h1 class="page-header"><?php echo $parent_dir ;?>
-				<?php if ($projectCount > 1) : ?>
-					<span class="pull-right page-count"><?php echo $projectCount - 1 ?></span>
+				<h1 class="page-header">
+				<?php if (count($entries) > 0) : ?>
+					<span class="pull-right page-count"><?php echo count($entries) ?></span>
 				<?php endif; ?></h1>
-				<?php if ($projectCount > 1) : ?>
+
+				<?php if (count($entries) > 0) : ?>
 				<ol class="index-list">
-					<?php foreach ($dirArray as $dir):?>
+					<?php foreach ($entries as $dir):?>
 					<li><a href="<?php echo $dir ;?>" target="_blank"><?php echo $dir ;?></a></li>
 					<?php endforeach; ?>
 				</ol>
@@ -72,7 +63,7 @@
 		</div>
 	</div>
 	<footer class="index-footer text-center">
-		&copy; <?php echo date("Y"); ?> <a href="//frontjet.com/"> Frontjet LLC</a> 
+		&copy; <?php echo date("Y"); ?> <a href="//frontjet.com/"> Frontjet LLC</a>
 	</footer>
 	<a href="mailto:hello@frontjet.com" class="get-in-touch-btn">
 		<i class="envelop-icon"></i>

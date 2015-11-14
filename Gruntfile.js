@@ -1,6 +1,6 @@
 module.exports = function(grunt) {
 
-    /** 
+    /**
      * Load required Grunt tasks. These are installed based on the versions listed
      * in `package.json` when you do `npm install` in this directory.
      */
@@ -100,9 +100,7 @@ module.exports = function(grunt) {
         uglify: {
           dist: {
             files: {
-              '<%= buildDir %>/js/scripts.min.js': [
-                '<%= srcDir %>/js/*.js'
-              ]
+              '<%= buildDir %>/js/scripts.min.js': ['<%= srcDir %>/js/*.js']
             },
             options: {
                beautify: true,
