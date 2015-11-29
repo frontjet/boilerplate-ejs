@@ -5,8 +5,9 @@ The package is including:
 - Grunt - *JavaScript Task Runner (http://gruntjs.com)*
 - EJS - *HTML Template library (http://www.embeddedjs.com)*
 - SASS - *CSS Preprocessor (http://sass-lang.com)*
-- Bourbon - *Sass Mixin Library (http://bourbon.io)*
-- Bootstrap v3.3.2 - *Mobile-first CSS framework (http://getbootstrap.com)*
+- PostCss 0.7.1 - (https://twitter.com/postcss)*
+- Autoprefixer 6.1.1 - (https://twitter.com/autoprefixer)*
+- Bootstrap v3.3.6 - *Mobile-first CSS framework (http://getbootstrap.com)*
 - Font Awesome 4.3 - *Font icon library (http://fontawesome.io)*
 
 http://frontjet.com
