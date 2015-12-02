@@ -49,7 +49,7 @@ module.exports = function(grunt) {
 
         ejs: {
             all: {
-                src: ['**/*.ejs', '!partials/**/*'],
+                src: ['**/*.ejs', '!**/_*.ejs'],
                 dest: '<%= buildDir %>/',
                 expand: true,
                 cwd: '<%= srcDir %>/',

@@ -1,8 +1,3 @@
 $(function(){
 
-
-	// console.log('hello');
-
-
-
 });

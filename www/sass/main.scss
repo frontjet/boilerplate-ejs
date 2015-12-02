@@ -1,74 +1,17 @@
 @charset "UTF-8";
-
 @import "bootstrap/variables";
 @import "bootstrap/mixins";
 
 /* helpers */
+
 @import "helpers/helpers";
-
-
-/* Main Styles */
-
-html{
-	
-}
-
-body {
-	font-size: $font-base;
-	font-family: $fontSansPro;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
-
-h1,h2,h3,h4,h5 {
-}
-
-h1 {
-
-}
-
-
-
-a {
-	outline: 0 !important;
-}
-p {
-	cursor: default;
-}
-
-
-
-
-@media #{$xs} {
-}
-@media #{$sm} {
-}
-@media #{$md} {
-}
-@media #{$lg} {
-}
-
-/* end Main Styles */
 
 /* layouts */
 
 
+/* modules */
+@import "modules/header";
+@import "modules/footer";
 
-/* partials */
-
-@import "partials/header";
-@import "partials/footer";
-
-////////////////////////////////////////////////////////////////* RETINA MEDIA*/ 
-
-@media
-
-only screen and (-webkit-min-device-pixel-ratio: 2)      and (max-width: 767px),
-only screen and (   min--moz-device-pixel-ratio: 2)      and (max-width: 767px),
-only screen and (     -o-min-device-pixel-ratio: 2/1)    and (max-width: 767px),
-only screen and (        min-device-pixel-ratio: 2)      and (max-width: 767px),
-only screen and (                min-resolution: 192dpi) and (max-width: 767px),
-only screen and (                min-resolution: 2dppx)  and (max-width: 767px) { 
-
-}
+/* main styles */ 
+@import "common";
