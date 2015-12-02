@@ -1,12 +1,13 @@
 module.exports = function(grunt) {
 
-    /** 
+    /**
      * Load required Grunt tasks. These are installed based on the versions listed
      * in `package.json` when you do `npm install` in this directory.
      */
 
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-postcss');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-spritesmith');
     grunt.loadNpmTasks('grunt-csso');
@@ -15,7 +16,7 @@ module.exports = function(grunt) {
     var userConfig = {
         buildDir: "build",
         srcDir: "www"
-    }
+    };
 
     var taskConfig = {
 
@@ -32,10 +33,16 @@ module.exports = function(grunt) {
                     cwd: '<%= srcDir %>/fonts/',
                     expand: true
                 }, {
-                    src: ['**'],
+                    src: ['**/*.js'],
                     dest: '<%= buildDir %>/js/',
                     cwd: '<%= srcDir %>/js/',
                     expand: true
+                }, {
+                    src: ['**/*.php'],
+                    dest: '<%= buildDir %>/',
+                    expand: true,
+                    cwd: '<%= srcDir %>/',
+                    ext: '.php'
                 }]
             }
         },
@@ -56,29 +63,39 @@ module.exports = function(grunt) {
                 destCss: '<%= srcDir %>/sass/helpers/_icons.scss',
                 imgPath: '../img/spritebase.png',
                 algorithm: 'top-down',
-                cssTemplate: '<%= srcDir %>/sass/helpers/mustacheStr.css.mustache'
+                cssTemplate: '<%= srcDir %>/sass/helpers/sprite-generator-templates/mustacheStr.css.mustache'
             }
         },
         sass: {
             compile: {
-                options: {
-                    loadPath: require('node-bourbon').includePaths
-                },
                 files: {
                     '<%= buildDir %>/css/main.css': '<%= srcDir %>/sass/main.scss'
                 }
             },
             bootstrap: {
                 files: {
-                    '<%= buildDir %>/css/bootstrap.css': '<%= srcDir %>/sass/bootstrap.scss'
+                    '<%= buildDir %>/css/bootstrap.css': '<%= srcDir %>/sass/bootstrap/bootstrap.scss'
                 }
             },
             fontawesome: {
                 files: {
-                    '<%= buildDir %>/css/font-awesome.css': '<%= srcDir %>/sass/font-awesome.scss'
+                    '<%= buildDir %>/css/font-awesome.css': '<%= srcDir %>/sass/font-awesome/font-awesome.scss'
                 }
             }
 
+        },
+
+        postcss: {
+            options: {
+                processors: [
+                    require('autoprefixer')({
+                        browsers: 'last 5 versions'
+                    })
+                ]
+            },
+            dist: {
+                src: '<%= buildDir %>/css/main.css'
+            }
         },
         csso: {
             compress: {
@@ -101,7 +118,7 @@ module.exports = function(grunt) {
              */
             sass: {
                 files: ['<%= srcDir %>/**/*.scss'],
-                tasks: ['sass:compile'],
+                tasks: ['sass:compile', 'postcss:dist'],
                 options: {
                     livereload: true
                 },
@@ -142,8 +159,7 @@ module.exports = function(grunt) {
                 options: {
                     livereload: true
                 },
-            }
-
+            },
         }
     }
 
@@ -157,6 +173,7 @@ module.exports = function(grunt) {
         'sass:compile',
         'ejs:all',
         'copy:assets',
+        'postcss:dist',
         "sprite:all",
         'delta'
     ]);
@@ -166,11 +183,12 @@ module.exports = function(grunt) {
         'sass:fontawesome',
         'sass:compile',
         'ejs:all',
+        'postcss:dist',
         "sprite:all",
         'copy:assets'
     ]);
 
     grunt.registerTask('csso', ['csso:compress']);
-    grunt.registerTask('default', ['sass:bootstrap', 'sass:fontawesome', 'sass:compile']);
+    grunt.registerTask('default', ['sass:bootstrap', 'sass:fontawesome', 'sass:compile', 'postcss:dist']);
 
 }
